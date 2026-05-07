@@ -105,3 +105,7 @@ p = subprocess.run(
     # ...
 )
 ```
+
+:::{versionadded} VERSION_NEXT_FEATURE
+The `bazel-runfiles` PyPI package can be imported as `bazel_runfiles`.
+:::
