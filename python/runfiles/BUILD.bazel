@@ -41,6 +41,7 @@ py_library(
         "../..",
     ],
     visibility = ["//visibility:public"],
+    deps = ["//python/bazel_runfiles"],
 )
 
 # This can be manually tested by running tests/runfiles/runfiles_wheel_integration_test.sh
@@ -64,6 +65,8 @@ py_wheel(
     version = "{BUILD_EMBED_LABEL}",
     visibility = ["//visibility:public"],
     deps = [
+        "//python/bazel_runfiles",
+        "//python/bazel_runfiles:py_typed",
         ":py_typed",
         ":runfiles",
     ],

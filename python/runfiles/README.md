@@ -1,17 +1,21 @@
 # bazel-runfiles library
 
-This is a Bazel Runfiles lookup library for Bazel-built Python binaries and tests.
+This is a Bazel Runfiles lookup library for Bazel-built Python binaries and
+tests.
 
-Learn about runfiles: read [Runfiles guide](https://bazel.build/extending/rules#runfiles)
-or watch [Fabian's BazelCon talk](https://www.youtube.com/watch?v=5NbgUMH1OGo).
+Learn about runfiles: read
+[Runfiles guide](https://bazel.build/extending/rules#runfiles) or watch
+[Fabian's BazelCon talk](https://www.youtube.com/watch?v=5NbgUMH1OGo).
 
 ## Importing
 
-The Runfiles API is available from two sources, a direct Bazel target, and a [pypi](https://pypi.org/) package.
+The Runfiles API is available from two sources, a direct Bazel target, and a
+[pypi](https://pypi.org/) package.
 
 ## Pure Bazel imports
 
-1. Depend on this runfiles library from your build rule, like you would other third-party libraries:
+1. Depend on this runfiles library from your build rule, like you would other
+   third-party libraries:
 
     ```python
     py_binary(
@@ -29,12 +33,15 @@ The Runfiles API is available from two sources, a direct Bazel target, and a [py
 
 ## Pypi imports
 
-1. Add the 'bazel-runfiles' dependency along with other third-party dependencies, for example in your `requirements.txt` file.
+1. Add the `bazel-runfiles` dependency along with other third-party
+   dependencies, for example in your `requirements.txt` file.
 
-2. Depend on this runfiles library from your build rule, like you would other third-party libraries:
+2. Depend on this runfiles library from your build rule, like you would other
+   third-party libraries:
+
     ```python
     load("@pip_deps//:requirements.bzl", "requirement")
-    
+
     py_binary(
         name = "my_binary",
         ...
@@ -43,9 +50,14 @@ The Runfiles API is available from two sources, a direct Bazel target, and a [py
     ```
 
 3. Import the runfiles library:
+
     ```python
-    from runfiles import Runfiles
+    from bazel_runfiles import Runfiles
     ```
+
+    The legacy `from runfiles import Runfiles` import remains supported for
+    compatibility, but `bazel_runfiles` avoids conflicts with other `runfiles`
+    modules on `sys.path`.
 
 ## Typical Usage
 
@@ -59,9 +71,13 @@ with open(r.Rlocation("my_workspace/path/to/my/data.txt"), "r") as f:
     # ...
 ```
 
-Here `my_workspace` is the name you specified via `module(name = "...")` in your `MODULE.bazel` file (with `--enable_bzlmod`, default as of Bazel 7) or `workspace(name = "...")` in `WORKSPACE` (with `--noenable_bzlmod`).
+Here `my_workspace` is the name you specified via `module(name = "...")` in
+your `MODULE.bazel` file (with `--enable_bzlmod`, default as of Bazel 7) or
+`workspace(name = "...")` in `WORKSPACE` (with `--noenable_bzlmod`).
 
-The code above creates a manifest- or directory-based implementation based on the environment variables in `os.environ`. See `Runfiles.Create()` for more info.
+The code above creates a manifest- or directory-based implementation based on
+the environment variables in `os.environ`. See `Runfiles.Create()` for more
+info.
 
 If you want to explicitly create a manifest- or directory-based
 implementation, you can do so as follows:
@@ -72,7 +88,8 @@ r1 = Runfiles.CreateManifestBased("path/to/foo.runfiles_manifest")
 r2 = Runfiles.CreateDirectoryBased("path/to/foo.runfiles/")
 ```
 
-If you want to start subprocesses that access runfiles, you have to set the right environment variables for them:
+If you want to start subprocesses that access runfiles, you have to set the
+right environment variables for them:
 
 ```python
 import subprocess

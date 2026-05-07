@@ -89,6 +89,9 @@ END_UNRELEASED_TEMPLATE
   wheel `data`, `bin`, and `include` files are populated into the venv.
 * (runfiles) Added a pathlib-compatible API: {obj}`Runfiles.root()`
   Fixes [#3296](https://github.com/bazel-contrib/rules_python/issues/3296).
+* (runfiles) The `bazel-runfiles` PyPI package now exposes the Runfiles API
+  from `bazel_runfiles` while keeping `runfiles` as a compatibility import.
+  Fixes [#3714](https://github.com/bazel-contrib/rules_python/issues/3714).
 * (gazelle) Support alias_kind directive.
   Fixes [#3183](https://github.com/bazel-contrib/rules_python/issues/3183).
 * (toolchains) `3.13.12`, `3.14.3` Python toolchain from [20260325] release.

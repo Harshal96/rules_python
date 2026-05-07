@@ -12,4 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .runfiles import *
+if __package__ == "python.runfiles":
+    from python.bazel_runfiles import *
+else:
+    from bazel_runfiles import *

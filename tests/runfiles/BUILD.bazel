@@ -42,6 +42,12 @@ py_test(
     deps = ["//python/runfiles"],
 )
 
+py_test(
+    name = "runfiles_wheel_import_test",
+    srcs = ["runfiles_wheel_import_test.py"],
+    data = ["//python/runfiles:wheel"],
+)
+
 build_test(
     name = "publishing",
     targets = [
